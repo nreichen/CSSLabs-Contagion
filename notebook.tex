@@ -1,0 +1,1238 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{lab\_1\_metoo}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \hypertarget{complicating-social-contagion}{%
+\section{Complicating Social
+Contagion}\label{complicating-social-contagion}}
+
+    \hypertarget{section-1-background}{%
+\subsection{Section 1: Background}\label{section-1-background}}
+
+\hypertarget{learning-objectives}{%
+\subsubsection{1.1 Learning Objectives}\label{learning-objectives}}
+
+\begin{itemize}
+\tightlist
+\item
+  Explore different aspects of social influence that affect social
+  contagion processes.
+\end{itemize}
+
+\hypertarget{data}{%
+\subsubsection{1.2 Data}\label{data}}
+
+\begin{itemize}
+\tightlist
+\item
+  This lab uses data collected from Twitter. Before the lab, we already
+  collected the data and did a lot to clean it up. In the lab, will
+  focus on using the data to understand social contagion.
+\item
+  We will look at the spread of the hashtag \#metoo on Twitter.
+  \href{https://www.nytimes.com/2017/10/20/us/me-too-movement-tarana-burke.html}{The
+  Me Too Campaign began in 2007}. The hashtag became extremely popular
+  on Twitter starting in October, 2017. It was tweeted more than 7
+  million times in the first 4 months after that.
+\item
+  Me Too is a social movement that calls attention to sexual assault and
+  harassment. We will not be looking at the text of any of the tweets in
+  this lab. For our purposes here, we just want to look at how being
+  exposed to other people talking about \#metoo on Twitter influences
+  someone to also talk about \#metoo on Twitter.
+\end{itemize}
+
+    \hypertarget{section-2-setup}{%
+\subsection{Section 2: Setup}\label{section-2-setup}}
+
+\hypertarget{import-python-modules}{%
+\paragraph{Import Python Modules}\label{import-python-modules}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+        \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+        \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+        \PY{k+kn}{from} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{colors} \PY{k}{import} \PY{n}{LogNorm}
+        
+        \PY{c+c1}{\PYZsh{}plt.style.use(\PYZsq{}fivethirtyeight\PYZsq{})}
+        \PY{o}{\PYZpc{}}\PY{k}{matplotlib} inline
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+c1}{\PYZsh{}plt.style.use(\PYZsq{}fivethirtyeight\PYZsq{})}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{style}\PY{o}{.}\PY{n}{use}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ggplot}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{section-3-spread-of-metoo}{%
+\subsection{Section 3: Spread of
+MeToo}\label{section-3-spread-of-metoo}}
+
+\hypertarget{load-data-helper-function}{%
+\paragraph{Load data \& helper
+function}\label{load-data-helper-function}}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{k}{def} \PY{n+nf}{downcast}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+            \PY{n}{tmp} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{select\PYZus{}dtypes}\PY{p}{(}\PY{n+nb}{int}\PY{p}{)}
+            \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{tmp}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{values}\PY{p}{:}
+                \PY{n}{df}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}numeric}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{,} \PY{n}{downcast}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{unsigned}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+            
+            \PY{n}{tmp} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{select\PYZus{}dtypes}\PY{p}{(}\PY{n+nb}{float}\PY{p}{)}
+            \PY{k}{for} \PY{n}{c} \PY{o+ow}{in} \PY{n}{tmp}\PY{o}{.}\PY{n}{columns}\PY{o}{.}\PY{n}{values}\PY{p}{:}
+                \PY{n}{df}\PY{p}{[}\PY{n}{c}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}numeric}\PY{p}{(}\PY{n}{df}\PY{p}{[}\PY{n}{c}\PY{p}{]}\PY{p}{,} \PY{n}{downcast}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{float}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{n}{pcts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/daily\PYZus{}pcts.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{pcts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{pcts}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+        \PY{n}{downcast}\PY{p}{(}\PY{n}{pcts}\PY{p}{)}
+        
+        \PY{n}{counts} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/daily\PYZus{}counts.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{index\PYZus{}col}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+        \PY{n}{counts}\PY{o}{.}\PY{n}{index} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{counts}\PY{o}{.}\PY{n}{index}\PY{p}{)}
+        \PY{n}{downcast}\PY{p}{(}\PY{n}{counts}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{every-day-a-few-people-used-the-hashtag-metoo}{%
+\paragraph{Every day, a few people used the hashtag
+\#metoo}\label{every-day-a-few-people-used-the-hashtag-metoo}}
+
+\begin{itemize}
+\tightlist
+\item
+  Take a look at the chart below. It shows how many tweets were made
+  every day using the hashtag \#metoo
+\item
+  Notice that people on twitter did use the hashtag \#metoo before
+  October 15, 2017.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{n}{event} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{datetime}\PY{p}{(}\PY{l+m+mi}{2017}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{15}\PY{p}{)}
+        
+        \PY{n}{counts}\PY{p}{[}\PY{n}{counts}\PY{o}{.}\PY{n}{index} \PY{o}{\PYZlt{}} \PY{n}{event}\PY{p}{]}\PY{o}{.}\PY{n}{tweets}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{area}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}metoo Tweets per Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{then-something-happened}{%
+\paragraph{Then something happened}\label{then-something-happened}}
+
+\begin{itemize}
+\tightlist
+\item
+  On October 15, 2017, producer and actress Alyssa Milano used the
+  hashtag, and there were 600,000 tweets about it within a single day.
+\item
+  Since then, the number of \#metoo tweets per day has been mugh higher.
+\item
+  It is possible that some of these people are coming up with the
+  hashtag on their own. However, we saw above that before Milano
+  tweeted, not many tweets used the hashtag. The extreme and fast growth
+  of the hashtag suggests a process of social influence or contagion:
+  people are getting the idea from seeing other people use it.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{n}{counts}\PY{o}{.}\PY{n}{tweets}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{area}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}metoo Tweets per Day}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_10_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-answer}{%
+\paragraph{Short answer:}\label{short-answer}}
+
+\begin{itemize}
+\tightlist
+\item
+  After the initial October 15 rush of tweets, there are several other
+  days where the number of tweets jumps up. In a few sentences, write
+  what you think might be happening on those days.
+\end{itemize}
+
+    \hypertarget{your-answer-here}{%
+\paragraph{Your answer here:}\label{your-answer-here}}
+
+    \hypertarget{cumulative-plots}{%
+\paragraph{Cumulative plots}\label{cumulative-plots}}
+
+\begin{itemize}
+\tightlist
+\item
+  In the chart below, we show how the total number of tweets about
+  \#metoo grows over time. This is called a ``cumulative'' plot, because
+  the tweets ``accumulate'' over time. That is, the value for each day
+  is the total number of tweets about \#metoo that have happened up to
+  that day. As time goes on, the number of tweets that have ever been
+  made can only go up, so each day is as high or higher than the day
+  before it (we ignore deleted tweets).
+\item
+  We also show how the number of people using the hashtag grows over
+  time.
+\item
+  Notice that participation does not grow at a constant rate. Instead,
+  it grows in bursts, just like the daily tweeting happens in bursts.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{n}{counts}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{All\PYZhy{}Time Total Number of \PYZsh{}metoo Tweets and People Tweeting \PYZsh{}metoo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_14_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{most-metoo-tweets-are-social}{%
+\paragraph{Most \#metoo tweets are
+social}\label{most-metoo-tweets-are-social}}
+
+\begin{itemize}
+\tightlist
+\item
+  There are different kinds of tweets on Twitter. These are the two most
+  common ones:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{New tweets} are when someone writes a tweet and posts it.
+  \item
+    \textbf{Retweets} are when someone shares another person's tweet.
+  \end{itemize}
+\item
+  Retweets involve a user interacting with other users: sharing what
+  they wrote. They're a clear example of contagion because one user
+  literally got the tweet from another user.
+\item
+  In the two charts below, we see that the majority of tweets about
+  \#metoo are retweets.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}7}]:} \PY{n}{pcts}\PY{o}{.}\PY{n}{plot}\PY{o}{.}\PY{n}{line}\PY{p}{(}\PY{n}{y}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{retweet}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{new\PYZus{}tweet}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{ylim} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}
+                      \PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{,} \PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZsh{}MeToo Tweets by Type}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_16_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{section-4-how-much-exposure-to-metoo-do-people-have-before-joining}{%
+\subsection{Section 4: How much exposure to \#metoo do people have
+before
+joining?}\label{section-4-how-much-exposure-to-metoo-do-people-have-before-joining}}
+
+\begin{itemize}
+\tightlist
+\item
+  The cell below loads and prepares data for this section. You don't
+  need to understand it right now. Run the cell and scroll down.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+c1}{\PYZsh{}load data}
+        \PY{n}{tfm} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/tweets\PYZus{}friends\PYZus{}mentions\PYZus{}all.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{c+c1}{\PYZsh{}focus on people who have seen \PYZlt{} 2,000 tweets (most people)}
+        \PY{n}{tfm} \PY{o}{=} \PY{n}{tfm}\PY{p}{[}\PY{p}{(}\PY{n}{tfm}\PY{o}{.}\PY{n}{tweets\PYZus{}seen} \PY{o}{\PYZlt{}}\PY{o}{=}\PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{]}
+        \PY{n}{downcast}\PY{p}{(}\PY{n}{tfm}\PY{p}{)}
+        
+        \PY{n}{tweets\PYZus{}seen} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/tweets\PYZus{}seen.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{friends\PYZus{}seen} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/friends\PYZus{}seen.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        
+        \PY{c+c1}{\PYZsh{}helper function }
+        \PY{k}{def} \PY{n+nf}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{df}\PY{p}{)}\PY{p}{:}
+            \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pct\PYZus{}tweeted}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}tweeted} \PY{o}{/} \PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}tweeted}\PY{o}{.}\PY{n}{max}\PY{p}{(}\PY{p}{)}
+            
+            \PY{k}{if} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n\PYZus{}viewers}\PY{l+s+s1}{\PYZsq{}} \PY{o+ow}{in} \PY{n}{df}\PY{o}{.}\PY{n}{columns}\PY{p}{:}
+                \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}tweets} \PY{o}{/} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}viewers} \PY{o}{+} \PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}tweets}\PY{p}{)} 
+            \PY{k}{else}\PY{p}{:}
+                \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{NaN}
+            
+            \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{views}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{False}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{n\PYZus{}viewers\PYZus{}metoo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}tweets}\PY{o}{.}\PY{n}{cumsum}\PY{p}{(}\PY{p}{)}
+            \PY{n}{df}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{by}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{views}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{inplace}\PY{o}{=}\PY{k+kc}{True}\PY{p}{)}
+            \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{joiners\PYZus{}prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}tweets} \PY{o}{/} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{n\PYZus{}viewers\PYZus{}metoo}\PY{p}{)}     
+            \PY{n}{downcast}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+            \PY{k}{return} \PY{n}{df}
+            
+        \PY{n}{tweets\PYZus{}seen} \PY{o}{=} \PY{n}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{tweets\PYZus{}seen}\PY{p}{)}
+        \PY{n}{friends\PYZus{}seen} \PY{o}{=} \PY{n}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{friends\PYZus{}seen}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{itemize}
+\tightlist
+\item
+  We know that people are getting the idea to use \#metoo from each
+  other. In this section, we'll look at how much exposure to \#metoo
+  they had from other users. That is, we will see how many times people
+  were exposed to \#metoo before they participated by tweeting about it
+  themselves.
+\item
+  In the plot below, we see one dot for every person who tweeted
+  \#metoo.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The dot indicates how many tweets (x axis) and friends (y axis) they
+    saw tweeting about \#metoo before they made their first \#metoo
+    tweet. So someone who saw 200 tweets from 50 friends would be shown
+    as a dot at x=200, y=50
+  \end{itemize}
+\end{itemize}
+
+\textbf{Note:} The charts in the rest of the lab have more code than
+usual. This is just so that we can set up the labels and make the charts
+pretty. Don't worry about the details of that formatting code (lines
+starting with \texttt{ax} or \texttt{plt}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{tfm}\PY{o}{.}\PY{n}{tweets\PYZus{}seen}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{tfm}\PY{o}{.}\PY{n}{friends\PYZus{}seen}\PY{p}{,} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{alpha}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{5}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Friends Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tweets Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Users}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ Exposure before First \PYZsh{}metoo Tweet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{)}
+        \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1150}\PY{p}{)}
+        \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_20_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{seeing-this-more-clearly}{%
+\paragraph{Seeing this more clearly}\label{seeing-this-more-clearly}}
+
+\begin{itemize}
+\tightlist
+\item
+  It is hard to see individual people in the chart above, because there
+  are 2 million people all crammed into a small amount of space on our
+  screens.
+\item
+  The chart below color codes each area of the chart by how many people
+  are there. This lets us see how densely packed the points are. Or, in
+  other words, it lets us see what values are most and least common.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The dark blue areas have very few people (\(10^0 = 1\)).
+  \item
+    The green areas have more people (e.g. \(10^3 = 1,000\))
+  \item
+    The bright yellow areas have a lot of people (\(10^5 = 100,000\))
+  \end{itemize}
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}10}]:} \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.hist2d(x=tfm.tweets\PYZus{}seen, y=tfm.friends\PYZus{}seen, bins=60, norm=LogNorm())}
+         \PY{c+c1}{\PYZsh{}hexbin is another way of getting the same plot as 2dhist}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{hexbin}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{tfm}\PY{o}{.}\PY{n}{tweets\PYZus{}seen}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{tfm}\PY{o}{.}\PY{n}{friends\PYZus{}seen}\PY{p}{,} \PY{n}{bins}\PY{o}{=}\PY{l+m+mi}{800000}\PY{p}{,} \PY{n}{norm}\PY{o}{=}\PY{n}{LogNorm}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Friends Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tweets Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Users}\PY{l+s+s2}{\PYZsq{}}\PY{l+s+s2}{ Exposure before First \PYZsh{}metoo Tweet}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2000}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1150}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{grid}\PY{p}{(}\PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{colorbar}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{how-much-exposure-do-most-people-have-when-they-join}{%
+\paragraph{How much exposure do most people have when they
+join?}\label{how-much-exposure-do-most-people-have-when-they-join}}
+
+\begin{itemize}
+\tightlist
+\item
+  The charts above tell us that joining is most common at low levels of
+  exposure, but it is hard to see in them how much exposure is required
+  for a majority of people.
+\item
+  In the next chart, we look at the same data with a cumulative plot. We
+  show the cumulative number of people who have joined by the time their
+  exposure reaches x.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    So, for example, the chart below says that of the people who
+    eventually tweeted \#metoo, 80\% of them made their first tweet
+    after seeing fewer than 100 of the people they follow tweet \#metoo.
+  \end{itemize}
+\item
+  \textbf{Try it:} run the code below several times, picking different
+  numbers for the \texttt{maximum\_exposure} in order to zoom in and
+  out.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}11}]:} \PY{n}{maximum\PYZus{}exposure} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{friends\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{friends\PYZus{}seen}\PY{o}{.}\PY{n}{pct\PYZus{}tweeted}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Friends Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{tweets\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{tweets\PYZus{}seen}\PY{o}{.}\PY{n}{pct\PYZus{}tweeted}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tweets Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fraction Who Joined \PYZsh{}metoo by Exposure X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{maximum\PYZus{}exposure}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fraction of Joiners who join by the Time Their Exposure is X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lower right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_24_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-answers}{%
+\paragraph{Short Answers}\label{short-answers}}
+
+\begin{itemize}
+\tightlist
+\item
+  The lines in the chart don't start at 0 on the Y axis; they start at
+  6.3\%. In a few sentences, explain what you think this means.
+\item
+  The majority of people (51\%) have tweeted by the time they get to
+  what level of exposure? Write how many tweets they have seen, and how
+  many friends they have seen tweeting in a full sentence.
+\end{itemize}
+
+    Your answers here
+
+    \hypertarget{section-5-does-more-exposure-make-people-less-likely-to-join}{%
+\subsection{\texorpdfstring{Section 5: Does more exposure make people
+\emph{less} likely to
+join?}{Section 5: Does more exposure make people less likely to join?}}\label{section-5-does-more-exposure-make-people-less-likely-to-join}}
+
+\begin{itemize}
+\tightlist
+\item
+  We saw above that most people join at low levels of exposure.
+\item
+  Does this mean that more exposure makes people less likely to join?We
+  will find out in this section
+\end{itemize}
+
+\hypertarget{short-answer}{%
+\paragraph{Short answer}\label{short-answer}}
+
+\begin{itemize}
+\tightlist
+\item
+  Before we do, make a prediction: Do you think people who have been
+  exposed to \#metoo many times are more or less likely to tweet about
+  it than those who have been exposed a few times? Explain why in a few
+  sentences.
+\end{itemize}
+
+    Your Answer Here
+
+    \hypertarget{lets-see-if-youre-right}{%
+\paragraph{Let's see if you're right!}\label{lets-see-if-youre-right}}
+
+\hypertarget{probability-of-tweeting-metoo-based-on-amount-of-exposure}{%
+\paragraph{Probability of tweeting \#metoo based on amount of
+exposure}\label{probability-of-tweeting-metoo-based-on-amount-of-exposure}}
+
+\begin{itemize}
+\tightlist
+\item
+  The next two charts show how many times someone has been exposed to
+  the hashtag \#metoo on the X axis.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    The number of tweets they have seen is the number of times people
+    they follow have tweeted about \#metoo
+  \item
+    The number of people seen is the number of people they follow who
+    have tweeted about \#metoo.
+  \end{itemize}
+\item
+  On the Y axis, they show the probability that someone will make their
+  first \#metoo tweet, after having seen X number of tweets or people
+  tweeting about \#metoo.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Probability ranges from 0 (it definitely will not happen) to 1 (it
+    definitely will happen). Getting ``heads'' on a coin toss has a
+    probability of 0.5 (50\%). Rolling a one on a six-sided die has a
+    probability of \(1/6 \approx 0.1667\) (16.67\%).
+  \item
+    So, for example, the first chart shows that people who have seen
+    exactly 20 of the people they follow tweet about \#metoo have a 0.02
+    probability of making their first \#metoo tweet. That's a 2\% chance
+    of ``catching'' the ``contagion.''
+  \end{itemize}
+\item
+  \textbf{Try it:} change the \texttt{max\_exposure} variable to zoom in
+  and out on the x axis.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{max\PYZus{}exposure} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{friends\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{friends\PYZus{}seen}\PY{o}{.}\PY{n}{prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{People Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{tweets\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{tweets\PYZus{}seen}\PY{o}{.}\PY{n}{prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tweets Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Probability of Tweeting \PYZsh{}metoo for the first time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{max\PYZus{}exposure}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fraction of People with Exact Exposure X Who Tweet}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upper left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-answer}{%
+\paragraph{Short Answer}\label{short-answer}}
+
+\begin{itemize}
+\tightlist
+\item
+  We see that people with more exposure to \#metoo are more likely to
+  tweet about it than those with less exposure. Was your prediction
+  above correct?
+\end{itemize}
+
+    Your answer here
+
+    \hypertarget{why-does-this-happen}{%
+\subsubsection{Why does this happen?}\label{why-does-this-happen}}
+
+\begin{itemize}
+\item
+  The chart above tells us that high exposure people are more likely to
+  tweet than low exposure people. But the charts before that told us
+  that most people who tweet about \#metoo do so at lower levels of
+  exposure.
+\item
+  This happens because there are different numbers of people at each
+  level of exposure. 41 million people saw one tweet about \#metoo, but
+  only 12 million people saw 5 tweets about it, and only 164 thousand
+  people saw 100 tweets about it. You can see this in the chart below.
+\item
+  Thus, even though only 1 out of 1,000 people who see \#metoo one time
+  tweet about it, so many people see it one time that the number of
+  people tweeting after one exposure is 41,865. People who see \#metoo
+  100 times are 12 times more likely to tweet about it than those who
+  only saw it once (12 out of 1,000). But because so few people are
+  exposed 100 times, the total number tweeting after 100 exposures is
+  just 1,977 (that is 20 times fewer people)!
+
+  \((0.001*41865986) > (0.012*164788)\)
+
+  \(41865 > 1977\)
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{max\PYZus{}exposure} \PY{o}{=} \PY{l+m+mi}{100}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{}plt.scatter(x=friends\PYZus{}seen.views, y=friends\PYZus{}seen.n\PYZus{}viewers/1000000, label=\PYZsq{}People\PYZsq{})}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{tweets\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{tweets\PYZus{}seen}\PY{o}{.}\PY{n}{n\PYZus{}viewers}\PY{o}{/}\PY{l+m+mi}{1000000}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Tweets}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{color}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Millions of People}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{max\PYZus{}exposure}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{43}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of People with Exact Exposure X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upper right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_34_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-answers}{%
+\paragraph{Short Answers}\label{short-answers}}
+
+\begin{itemize}
+\tightlist
+\item
+  As people's exposure to \#metoo increases, so does their probability
+  of tweeting \#metoo. In other words, sometimes people need multiple
+  exposures to ``catch'' \#metoo.
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Assuming people see 100\% of tweets in their feed, does this mean
+    that \#metoo is a complex contagion? Write a few sentences
+    explaining your answer.
+  \item
+    What if people do not see all the tweets in their feed? Does your
+    answer change? Write a few sentences explaining why or why not.
+  \item
+    What about the people who tweet about \#metoo before any of their
+    friends do? How do they fit in?
+  \end{itemize}
+\end{itemize}
+
+    \hypertarget{your-answer-here}{%
+\paragraph{Your answer here}\label{your-answer-here}}
+
+    \hypertarget{section-6-are-close-friends-more-influential-than-other-friends}{%
+\subsection{Section 6: Are close friends more influential than other
+friends?}\label{section-6-are-close-friends-more-influential-than-other-friends}}
+
+\begin{itemize}
+\item
+  \begin{itemize}
+  \tightlist
+  \item
+    Before, we were looking at the users that people follow. Following
+    shows interest and means that you'll see what that person tweets in
+    your feed. On twitter, people you follow are called your friends.
+
+    \begin{itemize}
+    \tightlist
+    \item
+      But some users follow a lot of people, and they might not care
+      about all of them equally.
+    \item
+      A stronger signal that one user is paying attention to another
+      user is a \texttt{mention}: when someone tags someone else in a
+      tweet. Users generally mention fewer people than they follow, and
+      they might mention someone they do not follow.
+    \item
+      For this lab, we will compare what happens when we look at all
+      friends with when we look only at friends that a user mentions by
+      name.
+    \end{itemize}
+  \end{itemize}
+\item
+  Below, we will compare the effects of seeing someone you follow tweet
+  with seeing a friend you have mentioned tweet.
+\end{itemize}
+
+\hypertarget{load-and-process-data}{%
+\paragraph{Load and process data}\label{load-and-process-data}}
+
+\begin{itemize}
+\tightlist
+\item
+  Run this code and scroll down. Don't worry about how it works for now.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{close\PYZus{}friends\PYZus{}seen} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/mentions\PYZus{}friends\PYZus{}seen.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{far\PYZus{}friends\PYZus{}seen} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/far\PYZus{}friends\PYZus{}seen.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{close\PYZus{}friends\PYZus{}seen} \PY{o}{=} \PY{n}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{close\PYZus{}friends\PYZus{}seen}\PY{p}{)}
+         \PY{n}{far\PYZus{}friends\PYZus{}seen} \PY{o}{=} \PY{n}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{far\PYZus{}friends\PYZus{}seen}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{the-influence-of-close-friends}{%
+\paragraph{The influence of close
+friends}\label{the-influence-of-close-friends}}
+
+\begin{itemize}
+\tightlist
+\item
+  The plot below shows the cumulative number of people who have tweeted
+  \#metoo by the time they were exposed by X number of friends or close
+  friends.
+\item
+  \textbf{Try it:} You can zoom in and out in this chart by changing the
+  value of \texttt{max\_exposure}.
+\item
+  We see that almost half tweet before any of their close friends do,
+  and around 10\% of people tweet before any of their not-close friends
+  do.
+\item
+  We also see that people who have seen a small number of their close
+  friends tweet are much more likely to tweet than those who have seen
+  the same number of not-close friends tweet.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{max\PYZus{}exposure} \PY{o}{=} \PY{l+m+mi}{300}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{far\PYZus{}friends\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{far\PYZus{}friends\PYZus{}seen}\PY{o}{.}\PY{n}{pct\PYZus{}tweeted}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Not\PYZhy{}close friends Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{close\PYZus{}friends\PYZus{}seen}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{close\PYZus{}friends\PYZus{}seen}\PY{o}{.}\PY{n}{pct\PYZus{}tweeted}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Close friends Seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fraction Who Joined \PYZsh{}metoo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{max\PYZus{}exposure}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{1.01}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fraction of Joiners who join up to Exact Exposure X}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{lower right}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_40_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{section-7-whats-the-right-number-of-friends}{%
+\subsection{Section 7: What's the right number of
+friends?}\label{section-7-whats-the-right-number-of-friends}}
+
+\begin{itemize}
+\tightlist
+\item
+  We have seen so far that seeing tweets from more friends makes people
+  more likely to join, but is this just because more friends tweeting
+  means they have seen more tweets?
+\item
+  To answer this question, we will compare people who have seen the
+  exact same number of tweets, but from different numbers of friends.
+  For example, if I have seen 20 tweets about \#metoo, they might all
+  come from one person who tweeted 20 times, from 20 different people
+  who tweeted once, from 10 people who each tweeted twice, etc.
+\end{itemize}
+
+\textbf{Helper functions:} The cell below loads and prepares some data.
+Run it and scroll down to continue the lab.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{vot} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/views\PYZus{}over\PYZus{}time\PYZus{}grouped.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{first\PYZus{}new} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/tweets\PYZus{}friends\PYZus{}mentions\PYZus{}new.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{first\PYZus{}rt} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/tweets\PYZus{}friends\PYZus{}mentions\PYZus{}rt.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{k}{def} \PY{n+nf}{prep\PYZus{}views}\PY{p}{(}\PY{n}{tweets}\PY{p}{,} \PY{n}{vot}\PY{p}{)}\PY{p}{:}
+             \PY{n}{tweets}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{action}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+             \PY{n}{grouped} \PY{o}{=} \PY{n}{tweets}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tweets\PYZus{}seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{friends\PYZus{}seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{p}{)}
+             \PY{n}{df} \PY{o}{=} \PY{n}{vot}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{grouped}\PY{p}{,} \PY{n}{on}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{tweets\PYZus{}seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{friends\PYZus{}seen}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{how}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pct}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{n}{df}\PY{o}{.}\PY{n}{action} \PY{o}{/} \PY{n}{df}\PY{o}{.}\PY{n}{n}\PY{p}{)} \PY{o}{*} \PY{l+m+mi}{100}
+             \PY{n}{downcast}\PY{p}{(}\PY{n}{df}\PY{p}{)}
+             \PY{k}{return} \PY{n}{df}
+         
+         \PY{n}{first\PYZus{}tweet} \PY{o}{=} \PY{n}{prep\PYZus{}views}\PY{p}{(}\PY{n}{tfm}\PY{p}{,} \PY{n}{vot}\PY{p}{)}
+         \PY{n}{first\PYZus{}new} \PY{o}{=} \PY{n}{prep\PYZus{}views}\PY{p}{(}\PY{n}{first\PYZus{}new}\PY{p}{,} \PY{n}{vot}\PY{p}{)}
+         \PY{n}{first\PYZus{}rt} \PY{o}{=} \PY{n}{prep\PYZus{}views}\PY{p}{(}\PY{n}{first\PYZus{}rt}\PY{p}{,} \PY{n}{vot}\PY{p}{)}
+\end{Verbatim}
+
+
+    \hypertarget{the-right-number-of-friends}{%
+\paragraph{The right number of
+friends}\label{the-right-number-of-friends}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Pick a number:} Decide what level of exposure you want to look
+  at, for example people who have seen 10, 20, or 50 tweets about
+  \#metoo. Set this number in the code as \texttt{n\_tweets}. You can
+  pick any number from 5 to 100. Try it several times with different
+  numbers.
+\item
+  The first graph shows you ``of the people who saw \texttt{n\_tweets},
+  how many saw those tweets all from 1 friend, 2 friends, etc.?''
+\item
+  The second graph shows you the probability that someone will tweet
+  \#metoo, if they have seen \texttt{n\_tweets} about it from X
+  different friends.
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{n\PYZus{}tweets} \PY{o}{=} \PY{l+m+mi}{20}
+         
+         \PY{n}{df} \PY{o}{=} \PY{n}{first\PYZus{}tweet}\PY{p}{[}\PY{n}{first\PYZus{}tweet}\PY{o}{.}\PY{n}{tweets\PYZus{}seen} \PY{o}{==} \PY{n}{n\PYZus{}tweets}\PY{p}{]}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{friends\PYZus{}seen}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{n}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of People}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of people the tweets came from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of people who have seen }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n\PYZus{}tweets}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ tweets from X different people}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{bar}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{friends\PYZus{}seen}\PY{p}{,} \PY{n}{height}\PY{o}{=}\PY{n}{df}\PY{o}{.}\PY{n}{pct}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZpc{}}\PY{l+s+s1}{ who tweeted \PYZsh{}metoo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Number of people the tweets came from}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Probability of tweeting \PYZsh{}metoo after seeing }\PY{l+s+s1}{\PYZsq{}} \PY{o}{+} \PY{n+nb}{str}\PY{p}{(}\PY{n}{n\PYZus{}tweets}\PY{p}{)} \PY{o}{+} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ tweets from X different people}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_44_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_44_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-answer}{%
+\paragraph{Short answer:}\label{short-answer}}
+
+\begin{itemize}
+\tightlist
+\item
+  It looks like people are less likely to tweet if all the tweets they
+  saw came from different people (on the right in the graphs) than if
+  they came from a few people (on the left side).
+\item
+  It also looks like people are less likely to tweet if all of the
+  tweets they see come from the same person.
+\item
+  In a few sentences, say what you think might be causing these results.
+\end{itemize}
+
+    Your answer here
+
+    \hypertarget{section-8-which-tweets-require-the-least-exposure}{%
+\subsection{Section 8: Which tweets require the least
+exposure?}\label{section-8-which-tweets-require-the-least-exposure}}
+
+\begin{itemize}
+\tightlist
+\item
+  Up to now, we have just looked at whether people tweeted about \#metoo
+  at all. But remember from the beginning that there are different kinds
+  of tweets, including new tweets and retweets. Maybe one kind of tweet
+  requires less exposure than another? Here are two hypotheses:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Retweets require more exposure to make than new tweets, because
+    someone has to see a tweet they link before they can retweet it, but
+    they can write a new tweet without seeing any tweets they like.
+  \item
+    New tweets require more exposure, because writing something takes
+    more effort and committment than pressing a button to share
+    something someone else already wrote.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{short-answer}{%
+\paragraph{Short answer:}\label{short-answer}}
+
+\begin{itemize}
+\tightlist
+\item
+  In a few sentences, write which hypothesis you think is correct and
+  why. (If you don't like either, you can also write your own, but you
+  still have to explain why.)
+\end{itemize}
+
+    Your answer here
+
+    \hypertarget{lets-see}{%
+\paragraph{Let's see!}\label{lets-see}}
+
+\begin{itemize}
+\tightlist
+\item
+  The first cell loads and prepares data
+\item
+  Change \texttt{max\_exposure} in the second cell to zoom in and out on
+  the plot
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{ex\PYZus{}new} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/tweets\PYZus{}seen\PYZus{}before\PYZus{}new.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ex\PYZus{}rt} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{data/tweets\PYZus{}seen\PYZus{}before\PYZus{}rt.tsv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{sep}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{ex\PYZus{}new} \PY{o}{=} \PY{n}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{ex\PYZus{}new}\PY{p}{)}
+         \PY{n}{ex\PYZus{}rt} \PY{o}{=} \PY{n}{calc\PYZus{}probs}\PY{p}{(}\PY{n}{ex\PYZus{}rt}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{n}{max\PYZus{}exposure} \PY{o}{=} \PY{l+m+mi}{500}
+         
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{ex\PYZus{}rt}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{ex\PYZus{}rt}\PY{o}{.}\PY{n}{prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Retweets}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{o}{=}\PY{n}{ex\PYZus{}new}\PY{o}{.}\PY{n}{views}\PY{p}{,} \PY{n}{y}\PY{o}{=}\PY{n}{ex\PYZus{}new}\PY{o}{.}\PY{n}{prob\PYZus{}at\PYZus{}exact\PYZus{}exposure}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{New tweets}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Fraction who Tweet}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Exposure}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}xlim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{max\PYZus{}exposure}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}ylim}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{0.04}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Probability of Making Retweet vs New Tweet about \PYZsh{}metoo}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{upper left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{tight\PYZus{}layout}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_51_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \hypertarget{short-answer}{%
+\paragraph{Short answer:}\label{short-answer}}
+
+\begin{itemize}
+\tightlist
+\item
+  Does the data support your hypothesis? In a few sentences, say what
+  your hypothesis was and why the data do or don't support it.
+\end{itemize}
+
+    Your answer here
+
+    \hypertarget{review}{%
+\subsection{Review}\label{review}}
+
+\begin{itemize}
+\tightlist
+\item
+  In the Agent Based Modeling lab, we looked at a simple simulation of
+  social influence and contagion. We saw things spread among people in a
+  network.
+\item
+  In this lab, we showed some of the complexity that happens in the real
+  world by looking more closely at social contagion in data from the
+  \#metoo hashtag on twitter.
+\item
+  We have explored different aspects of exposure and found several
+  things:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Most people who tweet about \#metoo do so with just a little
+    exposure to it
+  \item
+    The more exposure someone has, the more likely they are to tweet
+  \item
+    Close friends are more influential than other friends
+  \end{itemize}
+\item
+  We also looked at different kinds of participation when we compared
+  retweeting with making new tweets, and found that some ways of joining
+  a movement require less social influence than others.
+\end{itemize}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
