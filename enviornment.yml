@@ -1,0 +1,7 @@
+name: contagion-environment
+channels:
+  - default
+dependencies:
+  - pandas
+  - numpy
+  - matplotlib
