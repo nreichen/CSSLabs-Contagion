@@ -1,4 +1,4 @@
-# User Guide for CSS Community Dynamics Lab Notebooks
+# User Guide for CSS Contagion Lab Notebook
 
 ## Contents
 0. [Getting the Code and Data](#download)
